@@ -2,7 +2,7 @@
 Author: 21181214207
 Date: 2021-12-22 06:18:28
 LastEditors: 21181214207
-LastEditTime: 2021-12-22 22:52:37
+LastEditTime: 2021-12-23 03:36:36
 FilePath: /Documents/WebScan/webscan.py
 '''
 import re
@@ -11,7 +11,6 @@ import sys
 import time
 import requests
 from bs4 import BeautifulSoup
-# from Match.Webfinger.webfinger import usage
 from lib.config_ import *
 
 class CmsScanner(object):
@@ -26,6 +25,7 @@ class CmsScanner(object):
         try:
             r = requests.get(url=self.target,headers=agent,timeout=3,verify=False)
             content = r.text
+            print(u'%s连接状态： %s %s' %(O, r.status_code, W))
             try:
                 title = BeautifulSoup(content,'lxml').title.text.strip()
                 return str(r.headers),content,title.strip('\n')
